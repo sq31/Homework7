@@ -6,12 +6,12 @@ m = 3, n = 4.
 8 7,8 -7,1 9
 */
 
-double[,] getRandomArray(int rowNumber, int colNumber)
+double[,] getRandomArray(int m, int n)
 {
-    double[,] result = new double[rowNumber, colNumber];
-    for (var i = 0; i < rowNumber; i++)
+    double[,] result = new double[m, n];
+    for (var i = 0; i < m; i++)
     {
-        for (var j = 0; j < colNumber; j++)
+        for (var j = 0; j < n; j++)
         {
             result[i, j] = new Random().NextDouble() * 100;
         }
@@ -32,10 +32,10 @@ void printArray(double[,] arrayToPrint)
 }
 
 Console.Write("Введите количество строк: ");
-int rowNumber = Convert.ToInt32(Console.ReadLine());
+int m = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Введите количество столбцов: ");
-int colNumber = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine());
 
-double[,] randomArray = getRandomArray(rowNumber, colNumber);
+double[,] randomArray = getRandomArray(m, n);
 printArray(randomArray);
