@@ -12,26 +12,26 @@
 */
 
 
-double[,] getRandomArray(int m, int n)
+int[,] getRandomArray(int m, int n)
 {
-    double[,] result = new double[m, n];
+    int[,] result = new int[m, n];
     for (var i = 0; i < m; i++)
     {
         for (var j = 0; j < n; j++)
         {
-            result[i, j] = new Random().NextDouble() * 100;
+            result[i, j] = new Random().Next(1, 20);
         }
     }
     return result;
 }
 
-void printArray(double[,] arrayToPrint)
+void printArray(int[,] arrayToPrint)
 {
     for (var i = 0; i < arrayToPrint.GetLength(0); i++)
     {
         for (var j = 0; j < arrayToPrint.GetLength(1); j++)
         {
-            Console.Write(Math.Round((arrayToPrint[i, j]), 2) + "\t");
+            Console.Write((arrayToPrint[i, j]) + "\t");
         }
         Console.WriteLine();
     }
@@ -39,9 +39,33 @@ void printArray(double[,] arrayToPrint)
 
 Console.Write("Введите количество строк: ");
 int m = Convert.ToInt32(Console.ReadLine());
-
 Console.Write("Введите количество столбцов: ");
 int n = Convert.ToInt32(Console.ReadLine());
 
-double[,] randomArray = getRandomArray(m, n);
+int[,] randomArray = getRandomArray(m, n);
 printArray(randomArray);
+
+
+Console.Write("Введите порядковый номер элемента массива: ");
+int poz = Convert.ToInt32(Console.ReadLine());
+
+int count = 0;
+{
+    for (var i = 0; i < randomArray.GetLength(0); i++)
+    {
+        for (var j = 0; j < randomArray.GetLength(1); j++)
+        {
+            count++;
+            if (poz == count)
+            {
+                Console.WriteLine($"Под номером элемента {poz} находится значение {randomArray[i, j]}.");
+                break;
+            }
+        }
+    }
+
+    if (poz > count || poz <= 0)
+    {
+        Console.WriteLine($"Номер элемента {poz} отсутствует в массиве.");
+    }
+}
